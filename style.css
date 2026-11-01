@@ -74,40 +74,80 @@ body {
     100% { transform: translate(calc(-50% + (var(--tx) * 1.5)), calc(-50% - 150px)) scale(0.8) rotate(var(--rot)); opacity: 0; }
 }
 
+/* --- BOTÓN FUTURISTA AZUL/VERDE NEÓN --- */
 .play-btn {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    background: transparent;
+    border: none;
     border-radius: 50%;
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     color: white;
     margin-bottom: 40px;
-    backdrop-filter: blur(10px);
+    z-index: 1;
 }
 
+/* Borde animado con gradiente neón */
+.play-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #00f3ff, #00ff66, #008cff, #00f3ff);
+    background-size: 300%;
+    animation: gradient-flow 4s linear infinite;
+    z-index: -2;
+    transition: all 0.4s ease;
+}
+
+/* Núcleo oscuro tipo cristal */
+.play-btn::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    background: linear-gradient(135deg, #1a1a24, #0f0f13);
+    border-radius: 50%;
+    z-index: -1;
+    box-shadow: inset 0 4px 15px rgba(0, 0, 0, 0.8);
+}
+
+/* Efecto de levitación y resplandor al pasar el mouse */
 .play-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.05);
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+    transform: scale(1.1) translateY(-3px);
+}
+
+.play-btn:hover::before {
+    filter: blur(12px);
+    inset: -2px;
+}
+
+.play-btn:active {
+    transform: scale(0.95);
 }
 
 .play-btn svg {
-    width: 28px;
-    height: 28px;
-    fill: currentColor;
+    width: 32px;
+    height: 32px;
+    fill: #ffffff;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
     margin-left: 4px;
-    transition: all 0.3s;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 2;
 }
 
+/* Transición a estado de pausa con brillo verde neón */
 .play-btn.playing svg {
     margin-left: 0;
+    fill: #00ff66;
+    filter: drop-shadow(0 0 12px rgba(0, 255, 102, 0.9));
 }
 
+/* --- CONTENEDOR Y ESTILOS DE LETRAS --- */
 #lyrics-container {
     position: relative;
     width: 100%;
@@ -130,15 +170,16 @@ body {
     pointer-events: none;
 }
 
+/* Letras activas con gradiente azul/verde neón */
 .lyric-line.active {
     opacity: 1;
     transform: translateY(0) scale(1);
-    background: linear-gradient(90deg, #ff8a00, #e52e71, #9b51e0, #ff8a00);
+    background: linear-gradient(90deg, #00f3ff, #00ff66, #008cff, #00f3ff);
     background-size: 300% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: gradient-flow 4s linear infinite;
-    filter: drop-shadow(0 4px 15px rgba(229, 46, 113, 0.4));
+    filter: drop-shadow(0 4px 15px rgba(0, 255, 102, 0.4));
 }
 
 @keyframes gradient-flow {
