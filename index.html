@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductor Premium: A un minuto de ti</title>
+    <!-- Aquí conectamos el archivo CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="player-container">
+        <div class="cover-wrapper" id="cover-wrapper">
+            <img src="images.jpg" alt="Cover" class="cover-art" id="cover">
+        </div>
+        
+        <audio id="audio-player">
+            <source src="01m.mpeg" type="audio/mpeg">
+        </audio>
+
+        <button id="play-btn" class="play-btn">
+            <svg id="play-icon" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+            </svg>
+            <svg id="pause-icon" viewBox="0 0 24 24" style="display: none;">
+                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+            </svg>
+        </button>
+
+        <div id="lyrics-container"></div>
+    </div>
+
+    <!-- Aquí conectamos el archivo JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
